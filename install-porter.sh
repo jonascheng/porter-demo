@@ -23,7 +23,7 @@ cp $PORTER_HOME/porter $PORTER_HOME/runtimes/porter-runtime
 echo Installed `$PORTER_HOME/porter version`
 
 $PORTER_HOME/porter mixin install exec --version $PKG_PERMALINK
-# $PORTER_HOME/porter mixin install docker --version $PKG_PERMALINK
+$PORTER_HOME/porter mixin install docker --version $PKG_PERMALINK
 # $PORTER_HOME/porter mixin install docker-compose --version $PKG_PERMALINK
 # $PORTER_HOME/porter mixin install kubernetes --version $PKG_PERMALINK
 # $PORTER_HOME/porter mixin install helm --version $PKG_PERMALINK
