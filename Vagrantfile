@@ -5,8 +5,8 @@ sudo ln -s /usr/local/bin/docker-compose /usr/bin/docker-compose
 SCRIPT
 
 $export_porter = <<-SCRIPT
-echo 'export PATH=$PATH:~/.porter' >> /home/vagrant/.profile
-echo 'export PORTER_ALLOW_DOCKER_HOST_ACCESS=true' >> /home/vagrant/.profile
+echo 'export PATH=$PATH:~/.porter' >> ~/.profile
+echo 'export PORTER_ALLOW_DOCKER_HOST_ACCESS=true' >> ~/.profile
 SCRIPT
 
 Vagrant.configure("2") do |config|
@@ -14,10 +14,10 @@ Vagrant.configure("2") do |config|
   config.vm.box_version = "20210723.0.1"
   config.vm.provision "docker"
   # config.vm.provision "shell", inline: $dockercompose
-  config.vm.provision "shell", path: "install-porter.sh"
-  config.vm.provision "shell", inline: $export_porter
+  config.vm.provision "shell", path: "install-porter.sh", privileged: false
+  config.vm.provision "shell", inline: $export_porter, privileged: false
 
-  config.vm.define "web" do |node|
+  config.vm.define "app" do |node|
     node.vm.network "private_network", type: "dhcp"
   end
 end
